@@ -66,7 +66,7 @@ and the following letter themes (presence of a theme is indicated by a 1, and is
 Author Name was removed for privacy and a lack of justification for inclusion (was not used in the research itself).
 Letter Notes and In Reply To Notes were removed since there also were not used in the research itself.
 
-It also contains a second Excel table (byteoriginendplaces.csv), which contains a subset of columns from the primary Excel table formatted for determining letter replies between hobbyists.
+Repo also contains a second Excel table (byteoriginendplaces.csv), which contains a subset of columns from the primary Excel table formatted for exploring letter replies between hobbyists.
 
 Each figure.png in the repo corresponds to a letter of interest in the article.
 
