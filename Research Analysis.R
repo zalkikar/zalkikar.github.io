@@ -3,14 +3,16 @@
 # Research Assistant 
 
 ##########    Importing the Data    ########## 
-byte_data <- read.csv('C:\\Users\\rayzc\\OneDrive\\Pictures\\Documents\\byte-letters-1975-1980-finalcleanedv2.csv')
+coding_file <- 'byte-letters-1975-1980-finalcleanedv2.csv'
+byte_data <- read.csv(coding_file)
 colnames(byte_data) 
-theme_data <- byte_data[,27:56] #Theme counts
+theme_data <- byte_data[,24:53] #Theme counts
 colnames(theme_data)
 communicators_direct <- c()
 counter <- 0
 
-letterlinks <- read.csv('C:\\Users\\rayzc\\OneDrive\\Pictures\\Documents\\byteoriginendplaces.csv', header=TRUE)
+location_file <- 'byteoriginendplaces.csv'
+letterlinks <- read.csv(location_file, header=TRUE)
 letterlinks <- data.frame(letterlinks, headers=TRUE)
 communicators_direct <- which(!(letterlinks[['ï..Origin.Place']] %in% letterlinks[['End.Place']])) #Indeces of letters that are in response to another location (another letter)
 letterlink_themes <- theme_data[communicators_direct,] #Now we have themes that are associated with letter links!
@@ -43,13 +45,13 @@ gendataONLY <- byte_data[unique(Gender_letterindeces[!(Gender_letterindeces%in%G
 famdataONLY <- byte_data[unique(Family_letterindeces[!(Family_letterindeces%in%GenderFamily_letterindeces)]),]
 genfamdata <- byte_data[unique(Gender_letterindeces[Gender_letterindeces%in%Family_letterindeces]),]
 
-genfamthemedata <- genfamdata[,27:56]
-genthemedata <- gendata[,27:56]
-famthemedata <- famdata[,27:56]
-genONLYthemedata <- gendataONLY[,27:56]
-famONLYthemedata <- famdataONLY[,27:56]
+genfamthemedata <- genfamdata[,27:53]
+genthemedata <- gendata[,27:53]
+famthemedata <- famdata[,27:53]
+genONLYthemedata <- gendataONLY[,27:53]
+famONLYthemedata <- famdataONLY[,27:53]
 
-details <- c(5,11,15,16,20,18) #Important letter properties - Gender, Location, Month, Year, Page, and Letter Title
+details <- c(3,8,12,13,17,15) #Important letter properties - Gender, Location, Month, Year, Page, and Letter Title
 genfamthemedetails <- genfamdata[,details]
 genthemedetails <- gendata[,details]
 famthemedetails <- famdata[,details]
@@ -96,7 +98,7 @@ total_letters <- 5
 # RUN THE REST:
 
 # We remove 'Other' themes for now...
-Other_themes <- (theme_data[,29])
+Other_themes <- (theme_data[,27])
 Other_themes <- Other_themes[Other_themes != ""]
 Unique_themes <- unique(Other_themes)
 Unique_themes
@@ -144,7 +146,7 @@ theme_counts_df[order(theme_counts),]
 plot(theme_counts_df)
 
 # Make a vector of all elements.
-elems <- colnames(theme_data[,0:28])
+elems <- colnames(theme_data[,0:26])
 elems
 # Make a sparse matrix
 library(Matrix)
@@ -374,3 +376,4 @@ dend_ave_20 <- color_branches(dend_ave, h=.5)
 plot(dend_ave_20, main = 'Average Linkage', ylab = "Height")
 
 #Infer Relationships by comparison of two clustering methods!
+
